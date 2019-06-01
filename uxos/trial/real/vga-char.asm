@@ -1,9 +1,9 @@
         org     0x7c00
         [bits 16]
-        mov     ax, 0xB800     
+        mov     ax, 0xB800      
         mov     es, ax
-        mov     ah, 0x0c
-        mov     al, 'X'
+        mov     ah, 0x0c        
+        mov     al, '$'         
         mov     [es:0], ax
 stop:   jmp     stop
 

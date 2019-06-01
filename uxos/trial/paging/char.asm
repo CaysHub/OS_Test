@@ -79,23 +79,14 @@ init_pte:
         and     eax, ~(CR0_EM|CR0_TS)
         or      eax, CR0_PG|CR0_WP|CR0_MP
         mov     cr0, eax
-        
-        mov     esi,0xB8000
-        mov     edi,msg
-str:    
-        mov     al, [edi]
+
+        mov     al, 'Z'
         mov     ah, 0x0c
-        mov     [esi], ax
-        add     edi,1
-        add     esi,2
-        cmp     al,0
-        jne     str
+        mov     [0xB8000], ax
 
         jmp     $
 
-        align   8    
-msg:
-        db "Hello world in protected/paging mode", 0                   
+        align   8                       
 gdt:    dw      0,0,0,0         ; dummy
 
         dw      0xFFFF          ; limit=4GB
@@ -111,7 +102,7 @@ gdt:    dw      0,0,0,0         ; dummy
         align   8
 gdt_desc: 
         dw      23              ; gdt limit=sizeof(gdt) - 1
-        dw      gdt
+        dd      gdt
 
         times 510-($-$$) db 0
         dw      0xAA55

@@ -5,7 +5,7 @@
 %define CR0_WP		(1 << 16)
 %define CR0_PG		(1 << 31)
 
-        org 0x7c00
+        org     0x7c00
         [bits 16]
         ; First, BIOS loads the bootsector into 0000:7C00.
         cli
@@ -15,7 +15,7 @@
         mov     sp, 0
 
         ; Enable A20 
-wait_8042_1:
+wait_8042_1: 
         in      al, 0x64 
         test    al, 0x2
         jnz     wait_8042_1
@@ -46,11 +46,11 @@ start32:
         mov     ss, ax
         mov     esp, 0x10000
 
-        mov     bl, 'Y'
+        mov     bl, 'Y'  
         mov     bh, 0x0c
         mov     [0x100000], bx
         mov     ax, [0x100000]
-        mov     [0xB8000], ax
+        mov     [0xB8000], ax 
 
         jmp     $
 
@@ -70,7 +70,7 @@ gdt:    dw      0,0,0,0         ; dummy
         align   8
 gdt_desc: 
         dw      23              ; gdt limit=sizeof(gdt) - 1
-        dw      gdt
+        dd      gdt
 
-        times 510-($-$$) db 0
+        times   510-($-$$) db 0
         dw      0xAA55
