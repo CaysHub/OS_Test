@@ -4,8 +4,8 @@ int add(int argc, ...)
 {
     int sum = 0;
     int *ap = &argc + 1;
-
-    for (int i = 0; i < argc; i++) {
+    int  i;
+    for (i = 0; i < argc; i++) {
         int arg = *(ap += 1, ap - 1);
         sum += arg;
     }

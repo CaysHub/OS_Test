@@ -17,7 +17,8 @@ int add(int argc, ...)
     int sum = 0;
     
     va_start(ap, argc);
-    for (int i = 0; i < argc; i++) {
+    int i;
+    for (i = 0; i < argc; i++) {
         sum += va_arg(ap, int);
     }
     va_end(ap);
