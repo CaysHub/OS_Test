@@ -1,6 +1,7 @@
 
+.PHONY:clean
 mymain:main.o max.o min.o
-	gcc -o mymain  main.o max.o min.o
+	gcc -g main.o max.o min.o -o mymain
 main.o:main.c
 	gcc -o main.o -c main.c
 max.o:max.c
@@ -8,4 +9,4 @@ max.o:max.c
 min.o:min.c
 	gcc -o min.o -c min.c
 clean:
-	rm -rf min.o max.o main.o
+	rm -rf min.o max.o main.o mymain
